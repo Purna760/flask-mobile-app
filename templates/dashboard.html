@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Dashboard | Flask Advanced{% endblock %}
+
+{% block content %}
+<div class="card dashboard-card">
+  <div class="dash-header">
+    <div>
+      <h1>Notes Dashboard</h1>
+      <p class="muted">Hello, {{ username }} 👋</p>
+    </div>
+    <button id="logout-btn" class="outline">Logout</button>
+  </div>
+
+  <div class="note-form">
+    <textarea id="note-input" rows="3" placeholder="Write a note..."></textarea>
+    <button id="add-note-btn">Add Note</button>
+  </div>
+
+  <h2 class="section-title">Your Notes</h2>
+  <ul id="notes-list" class="notes-list">
+    <!-- notes injected by JS -->
+  </ul>
+
+  <p id="notes-message" class="message"></p>
+</div>
+{% endblock %}
