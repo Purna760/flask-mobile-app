@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flask App Demo</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>Flask Frontend + Backend</h1>
+    <p>Enter two numbers. Flask backend will add them and return JSON.</p>
+
+    <div class="form-row">
+      <input id="numA" type="number" placeholder="Number A">
+      <input id="numB" type="number" placeholder="Number B">
+      <button id="addBtn">Add</button>
+    </div>
+
+    <h2 id="result">Result: -</h2>
+  </div>
+
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
