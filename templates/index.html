@@ -1,24 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Flask App Demo</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-  <div class="container">
-    <h1>Flask Frontend + Backend</h1>
-    <p>Enter two numbers. Flask backend will add them and return JSON.</p>
+{% extends "base.html" %}
+{% block title %}Welcome | Flask Advanced{% endblock %}
 
-    <div class="form-row">
-      <input id="numA" type="number" placeholder="Number A">
-      <input id="numB" type="number" placeholder="Number B">
-      <button id="addBtn">Add</button>
-    </div>
+{% block content %}
+<div class="card auth-card">
+  <h1>Welcome</h1>
+  <p class="muted">Create an account or log in to manage your notes.</p>
 
-    <h2 id="result">Result: -</h2>
+  <div class="tabs">
+    <button class="tab-button active" data-tab="login">Login</button>
+    <button class="tab-button" data-tab="register">Register</button>
   </div>
 
-  <script src="{{ url_for('static', filename='main.js') }}"></script>
-</body>
-</html>
+  <div id="login" class="tab-panel active">
+    <input id="login-username" type="text" placeholder="Username">
+    <input id="login-password" type="password" placeholder="Password">
+    <button id="login-btn">Log In</button>
+  </div>
+
+  <div id="register" class="tab-panel">
+    <input id="reg-username" type="text" placeholder="Choose username">
+    <input id="reg-password" type="password" placeholder="Choose password">
+    <button id="register-btn">Create Account</button>
+  </div>
+
+  <p id="auth-message" class="message"></p>
+</div>
+{% endblock %}
