@@ -22,11 +22,13 @@ function setupAuthPage() {
       btn.classList.add("active");
       document.getElementById(btn.dataset.tab).classList.add("active");
       msg.textContent = "";
+      msg.classList.remove("error");
     });
   });
 
   document.getElementById("login-btn").addEventListener("click", async () => {
     msg.textContent = "";
+    msg.classList.remove("error");
     const username = document.getElementById("login-username").value.trim();
     const password = document.getElementById("login-password").value;
 
@@ -47,6 +49,7 @@ function setupAuthPage() {
 
   document.getElementById("register-btn").addEventListener("click", async () => {
     msg.textContent = "";
+    msg.classList.remove("error");
     const username = document.getElementById("reg-username").value.trim();
     const password = document.getElementById("reg-password").value;
 
@@ -62,7 +65,6 @@ function setupAuthPage() {
       msg.classList.add("error");
     } else {
       msg.textContent = "Registered! You can now log in.";
-      msg.classList.remove("error");
     }
   });
 }
@@ -100,6 +102,7 @@ function setupDashboardPage() {
     } else {
       textarea.value = "";
       msg.textContent = "";
+      msg.classList.remove("error");
       prependNote(notesList, data.note);
     }
   });
@@ -122,6 +125,7 @@ async function loadNotes(listEl, msgEl) {
     msgEl.classList.remove("error");
   } else {
     msgEl.textContent = "";
+    msgEl.classList.remove("error");
   }
   data.notes.forEach(note => prependNote(listEl, note, false));
 }
