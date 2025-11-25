@@ -56,11 +56,6 @@ def init_db():
     db.commit()
 
 
-@app.before_first_request
-def setup():
-    init_db()
-
-
 def login_required_json(f):
     """Decorator for JSON routes that require login."""
     @wraps(f)
@@ -169,8 +164,8 @@ def notes():
         "ORDER BY created_at DESC",
         (user_id,),
     )
-    notes = [dict(row) for row in cur.fetchall()]
-    return jsonify({"notes": notes})
+    notes_list = [dict(row) for row in cur.fetchall()]
+    return jsonify({"notes": notes_list})
 
 
 @app.route("/api/notes/<int:note_id>", methods=["DELETE"])
@@ -188,6 +183,13 @@ def delete_note(note_id):
     db.execute("DELETE FROM notes WHERE id = ?", (note_id,))
     db.commit()
     return jsonify({"message": "Deleted"})
+
+
+# ---------- INITIALIZE DB FOR FLASK 3+ ----------
+
+# This replaces @app.before_first_request (removed in Flask 3)
+with app.app_context():
+    init_db()
 
 
 # Only used if you run it directly (Render uses gunicorn)
